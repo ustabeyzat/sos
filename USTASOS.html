@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="assets/usta.png">
+	<title>USTASOS</title>
+<style type="text/css">
+	#buton, #alan, #site, #resim, #cizgi, #za {
+  		-webkit-touch-callout: none; /* iOS Safari */
+  		-webkit-user-select: none; /* Safari */
+  		-khtml-user-select: none; /* Konqueror HTML */
+  		-moz-user-select: none; /* Old versions of Firefox */
+  		-ms-user-select: none; /* Internet Explorer/Edge */
+  		user-select: none;
+  	}
+</style>
+</head>
+<body id="bod" oncontextmenu="return false;" style="background-color: white;">
+	<audio id="bip" src="assets/bip.mp3"></audio>
+	<audio id="dit" src="assets/dit.mp3"></audio>
+	<audio id="diit" src="assets/diit.mp3"></audio>
+	<audio id="gold" src="assets/gold.mp3"></audio>
+	<audio loop id="music" src="assets/music.m4a"></audio>
+
+<div id="buton" style="width: 500px; height: 220px; margin: auto; margin-top: 30px;">
+	<p id="bas" style="height: 27px; text-align: center; font-size: 25px; margin: 0px; color: black;">USTASOS</p>
+	<button id="yapay" onclick="olustur('dit')" style="width: 248px; height: 40px; font-size: 20px; cursor: pointer; margin-top: 10px;">BOT OLUŞTUR</button>
+	<button id="ikili" onclick="olustur('bip')" style="width: 248px; height: 40px; font-size: 20px; cursor: pointer; margin-top: 10px;">BOTSUZ OLUŞTUR</button>
+	<p id="oyuncu" style="color: blue; height: 22px; font-size: 20px; margin: 0px; margin-top: 10px; margin-left: 10px;">Yukarıda ki seçeneklerden istediğinize tıklayın..</p>
+	<p id="rakip" style="height: 22px; font-size: 20px; margin: 0px; margin-top: 10px; margin-left: 10px;"></p>
+	<button id="ac" onclick="yap('a')" style="width: 80px; height: 45px; font-size: 25px; margin-top: 20px; border-radius: 8px 0px 0px 8px; border: 3px solid black; background-color: darkgrey; color: white; cursor: default;">A</button>
+	<button id="ka" onclick="yap('k')" style="width: 80px; height: 45px; font-size: 25px; margin-top: 10px; margin-left: -4px; border-radius: 0px 8px 8px 0px; border: none; background-color: darkgrey; color: white; cursor: pointer;">K</button>
+	<button id="bir" onclick="yap('1')" style="width: 80px; height: 45px; font-size: 25px; margin-top: 10px; border-radius: 8px 0px 0px 8px; border: 3px solid black; background-color: darkgrey; color: white; cursor: default;">||</button>
+	<button id="iki" onclick="yap('2')" style="width: 80px; height: 45px; font-size: 25px; margin-top: 10px; margin-left: -4px; border-radius: 0px 8px 8px 0px; border: none; background-color: darkgrey; color: white; cursor: pointer;">></button>
+	<button id="so" disabled="true" onclick="yap('s')" style="width: 80px; height: 45px; font-size: 25px; margin-top: 10px; border-radius: 8px 0px 0px 8px; border: none; background-color: darkgrey; color: white; cursor: default;">S</button>
+	<button id="os" disabled="true" onclick="yap('o')" style="width: 80px; height: 45px; font-size: 25px; margin-top: 10px; margin-left: -4px; border-radius: 0px 8px 8px 0px; border: none; background-color: darkgrey; color: white;">O</button>
+</div>
+
+<div id="alan" style="width: 555px; height: 555px; margin: auto; margin-top: 50px;"></div>
+
+<div>
+	<p id="za" onclick="zam()" style="visibility: hidden; display: flex; border: 1px solid white; border-radius: 5px; color: white; background-color: black; cursor: pointer; width: 50px; height: 25px; text-align: center; margin: auto; margin-top: 10px; align-items: center; justify-content: center; font-size: 25px">30</p>
+</div>
+
+<div style="text-align: center; width: 100%;">
+<div id="cizgi" style="text-align: center; margin: auto; width: 75px; border-top: 1px solid black; margin-top:15px;">
+	<a href="https://ustasite.com/" style="text-decoration: none;"><img id="resim" alt="logo" src="assets/usta.png" height="45px" style="margin-top: 10px;"></a><br>
+	<a id="site" href="https://ustasite.com/" style="text-decoration: none; color: black;">ustasite.com</a>
+</div>
+</div>
+
+<script type="text/javascript">
+	var asil = 25;
+	var hiz = 1000;
+	var bitti = "devamke";
+	var harf = "I";
+	var zaman = asil;
+  var za = document.getElementById("za");
+  za.style.visibility = "hidden";
+  za.style.backgroundColor = "black";
+  za.innerHTML = zaman;
+	var bothizi = 1000;
+  var eksil = "dur";
+  var timer = null;
+  var sure = null;
+
+	function zam() {
+		if (za.style.visibility == "visible" && document.getElementsByClassName("butonlar")[0]) {
+			if (eksil == "dur") {
+				eksil = "eksil";
+				timer = setInterval(function(){
+					if (zaman > 0) {
+  					zaman -= 1;
+  					za.innerHTML = zaman;
+						if(zaman < 10) {
+							za.style.backgroundColor = "red";
+							diit.play();
+						}
+						else {
+							za.style.backgroundColor = "black";
+						}
+  				}
+  				else {
+  					var smi = Math.floor(Math.random() * 2);
+  					var tik = Math.floor(Math.random() * 100);
+  					var kontrol = disab.indexOf(tik);
+  					if (disab.length < 100) {
+  						while(kontrol >= 0) {
+  							tik = Math.floor(Math.random() * 100);
+  							kontrol = disab.indexOf(tik);
+  						}
+							if (smi == 0) {
+								if(harf == "S") {
+									s(tik);
+								}
+								else {
+									harf = "S";
+									s(tik);
+									harf = "O";
+									document.getElementById("so").style.border = "none";
+								}
+  						}
+  						else {
+  							o(tik);
+  						}
+  					}
+  					else {
+							clearInterval(timer);
+							eksil = "dur";
+							zaman = asil;
+							za.style.backgroundColor = "black";
+  						za.innerHTML = zaman;
+  					}
+  				}
+				},hiz);
+			}
+			else {
+				clearInterval(timer);
+				eksil = "dur";
+			}
+		}
+	}
+
+	var bot = "yok";
+	function myfunc() {
+	  if(innerWidth < 580) {
+	  	document.getElementById("yapay").style.width = "199px";
+	  	document.getElementById("ikili").style.width = "199px";
+	  	document.getElementById("buton").style.width = "200px";
+	  	document.getElementById("buton").style.height = "370px";
+	  	document.getElementById("alan").style.width = "278px";
+	  	document.getElementById("alan").style.height = "278px";
+	  	if(document.getElementsByClassName("butonlar")[0]) {
+	  		for(let i = 0; i < 100; i++) {
+	  	  	document.getElementsByClassName("butonlar")[i].style.width = "25px";
+	  	  	document.getElementsByClassName("butonlar")[i].style.height = "25px";
+	  	  	document.getElementsByClassName("butonlar")[i].style.marginTop = "2px";
+	  	  	document.getElementsByClassName("butonlar")[i].style.marginLeft = "2px";
+	  	  	document.getElementsByClassName("butonlar")[i].style.fontSize = "17px";
+	  	  }
+	  	}
+	  }
+	  else{
+	  	document.getElementById("buton").style.width = "500px";
+	  	document.getElementById("buton").style.height = "220px";
+	  	document.getElementById("yapay").style.width = "248px";
+	  	document.getElementById("ikili").style.width = "248px";
+	  	document.getElementById("alan").style.width = "555px";
+	  	document.getElementById("alan").style.height = "555px";
+	  	if(document.getElementsByClassName("butonlar")[0]) {
+	  		for(let i = 0; i < 100; i++) {
+	  	  	document.getElementsByClassName("butonlar")[i].style.width = "50px";
+	  	  	document.getElementsByClassName("butonlar")[i].style.height = "50px";
+	  	  	document.getElementsByClassName("butonlar")[i].style.marginTop = "5px";
+	  	  	document.getElementsByClassName("butonlar")[i].style.marginLeft = "5px";
+	  	  	document.getElementsByClassName("butonlar")[i].style.fontSize = "35px";
+	  	  }
+	  	}
+	  }
+	}
+	myfunc();
+	window.addEventListener("resize", (event) => {myfunc();});
+
+	var liste = [];
+	var oldu = 0;
+	var eski = 0;
+	var opuan = 0;
+	var rpuan = 0;
+	var sira = 0;
+	var disab = [];
+	var soss = [];
+	var hamle = 1;
+	function olustur(el) {
+		hamle = 1;
+		bitti = "devamke";
+		liste = [];
+		eski = 0;
+		opuan = 0;
+		rpuan = 0;
+		sira = 0;
+		disab = [];
+		soss = [];
+		var oyuncu = document.getElementById("oyuncu");
+		var rakip = document.getElementById("rakip");
+    var bod = document.getElementById("bod");
+		if (oldu == 0) {
+			harf = "S";
+			document.getElementById("so").disabled = false;
+			document.getElementById("os").disabled = false;
+			document.getElementById("os").style.cursor = "pointer";
+    	if (bod.style.backgroundColor == 'white') {
+				document.getElementById("so").style.border = "3px solid black";
+			}
+			else {
+				document.getElementById("so").style.border = "3px solid white";
+			}
+			if (el == "dit") { // BOT
+				var yapay = document.getElementById("yapay");
+				var ikili = document.getElementById("ikili");
+				yapay.style.color = "blue";
+				ikili.style.color = "black";
+				oyuncu.innerHTML = "OYUNCU: " + opuan;
+				rakip.innerHTML = "BOT: " + rpuan;
+				bot = "var";
+			}
+			else { // BOTSUZ
+				zaman = asil;
+				za.style.backgroundColor = "black";
+  			za.innerHTML = zaman;
+  			za.style.visibility = "visible";
+				var yapay = document.getElementById("yapay");
+				var ikili = document.getElementById("ikili");
+				yapay.style.color = "black";
+				ikili.style.color = "blue";
+				oyuncu.innerHTML = "OYUNCU: " + opuan;
+				rakip.innerHTML = "RAKİP: " + rpuan;
+				bot = "yok";
+			}
+			if (sira == 0) {
+    			var bod = document.getElementById("bod");
+    			if (bod.style.backgroundColor == 'white') {
+					oyuncu.style.color = "blue";
+					rakip.style.color = "black";
+    			}
+    			else {
+					oyuncu.style.color = "yellow";
+					rakip.style.color = "white";
+    			}
+			}
+			else {
+    			if (bod.style.backgroundColor == 'white') {
+						oyuncu.style.color = "black";
+						rakip.style.color = "blue";
+    			}
+    			else {
+						oyuncu.style.color = "white";
+						rakip.style.color = "yellow";
+    			}
+			}
+
+			for (let i = 0; i < 100; i++) {
+				var alan = document.getElementById("alan");
+				var tekst = document.createElement('input');
+				tekst.type = "button";
+				tekst.id = i;
+				tekst.className = "butonlar";
+				tekst.style.width = "50px";
+				tekst.style.height = "50px";
+				tekst.style.marginLeft = "5px";
+				tekst.style.marginTop = "5px";
+				tekst.style.backgroundColor = "grey";
+				tekst.style.color = "grey";
+				tekst.style.border = 'none';
+				tekst.style.fontSize = "35px";
+				tekst.style.cursor = "pointer";
+				tekst.onmouseout = off;
+				tekst.onmouseover = on;
+				tekst.value = "I";
+				tekst.onclick = function() {
+    				s(i);
+  				};
+				tekst.oncontextmenu = function() {
+    				o(i);
+  				};
+				alan.appendChild(tekst);
+				oldu = 1;
+				cal(el);
+			}
+		}
+		else { // RESTART
+			zaman = asil;
+			za.style.backgroundColor = "black";
+  		za.innerHTML = zaman;
+			clearInterval(timer);
+			eksil = "dur";
+			if (el == "dit") { // BOT
+  			za.style.visibility = "hidden";
+				var yapay = document.getElementById("yapay");
+				var ikili = document.getElementById("ikili");
+				yapay.style.color = "blue";
+				ikili.style.color = "black";
+				oyuncu.innerHTML = "OYUNCU: " + opuan;
+				rakip.innerHTML = "BOT: " + rpuan;
+				bot = "var";
+			}
+			else { // BOTSUZ
+  			za.style.visibility = "visible";
+				var yapay = document.getElementById("yapay");
+				var ikili = document.getElementById("ikili");
+				yapay.style.color = "black";
+				ikili.style.color = "blue";
+				oyuncu.innerHTML = "OYUNCU: " + opuan;
+				rakip.innerHTML = "RAKİP: " + rpuan;
+				bot = "yok";
+			}
+			if (sira == 0) {
+				var bod = document.getElementById("bod");
+    			if (bod.style.backgroundColor == 'white') {
+					oyuncu.style.color = "blue";
+					rakip.style.color = "black";
+    			}
+    			else {
+					oyuncu.style.color = "yellow";
+					rakip.style.color = "white";
+    			}
+			}
+			else {
+    			if (bod.style.backgroundColor == 'white') {
+					oyuncu.style.color = "black";
+					rakip.style.color = "blue";
+    			}
+    			else {
+					oyuncu.style.color = "white";
+					rakip.style.color = "yellow";
+    			}
+			}
+
+			for (let i = 0; i < 100; i++) {
+				document.getElementById(i).remove();
+				var alan = document.getElementById("alan");
+				var tekst = document.createElement('input');
+				tekst.type = "button";
+				tekst.id = i;
+				tekst.className = "butonlar";
+				tekst.style.width = "50px";
+				tekst.style.height = "50px";
+				tekst.style.marginLeft = "5px";
+				tekst.style.marginTop = "5px";
+				tekst.style.backgroundColor = "grey";
+				tekst.style.color = "grey";
+				tekst.style.border = 'none';
+				tekst.style.fontSize = "35px";
+				tekst.style.cursor = "pointer";
+				tekst.onmouseout = off;
+				tekst.onmouseover = on;
+				tekst.value = "I";
+				tekst.onclick = function() {
+    				s(i);
+  				};
+				tekst.oncontextmenu = function() {
+    				o(i);
+  				};
+				alan.appendChild(tekst);
+				cal(el);
+			}
+		}
+		myfunc();
+	}
+
+	var cik = "devam";
+	var gold = document.querySelector("#gold");
+
+	function bekles(i) {
+		setTimeout(function(){
+			if(harf == "S") {
+				s(i);
+				botla();
+			}
+			else {
+				harf = "S";
+				s(i);
+				botla();
+				harf = "O";
+				document.getElementById("so").style.border = "none";
+			}
+		},bothizi*hamle);
+	}
+	function bekleo(i) {
+		setTimeout(function(){
+			o(i);
+			botla();
+		},bothizi*hamle);
+	}
+
+	// BOT HAMLELERİ
+	function botla() {
+		hamle = 1;
+  	for(var i = 0; i < 100; i++) { // bütün kutulara tek tek bak
+  		if (disab.indexOf(i) < 0) { // kutuya tıklanmamışsa
+  			//S -1 -2
+  			if(document.getElementById(i-1) && document.getElementById(i-1).value == "O" && document.getElementById(i-2) && document.getElementById(i-2).value == "S" && i != 10 && i != 20 && i != 30 && i != 40 && i != 50 && i != 60 && i != 70 && i != 80 && i != 90 && i != 11 && i != 21 && i != 31 && i != 41 && i != 51 && i != 61 && i != 71 && i != 81 && i != 91){
+  				bekles(i);
+					hamle+=1;
+  			}
+  			//S -11 -22
+  			if(document.getElementById(i-11) && document.getElementById(i-11).value == "O" && document.getElementById(i-22) && document.getElementById(i-22).value == "S" && i != 91 && i != 81 && i != 71 && i != 61 && i != 51 && i != 41 && i != 31 && i != 90 && i != 80 && i != 70 && i != 60 && i != 50 && i != 40 && i != 30){
+  				bekles(i);
+					hamle+=1;
+  			}
+  			//S -10 -20
+  			if(document.getElementById(i-10) && document.getElementById(i-10).value == "O" && document.getElementById(i-20) && document.getElementById(i-20).value == "S"){
+  				bekles(i);
+					hamle+=1;
+  			}
+  			//S -9 -18
+  			if(document.getElementById(i-9) && document.getElementById(i-9).value == "O" && document.getElementById(i-18) && document.getElementById(i-18).value == "S" && i != 19 && i != 29 && i != 39 && i != 49 && i != 59 && i != 69 && i != 79 && i != 89 && i != 99 && i != 18 && i != 28 && i != 38 && i != 48 && i != 58 && i != 68 && i != 78 && i != 88 && i != 98){
+  				bekles(i);
+					hamle+=1;
+  			}
+  			//S +1 +2
+  			if(document.getElementById(i+1) && document.getElementById(i+1).value == "O" && document.getElementById(i+2) && document.getElementById(i+2).value == "S" && i != 8 && i != 18 && i != 28 && i != 38 && i != 48 && i != 58 && i != 68 && i != 78 && i != 88 && i != 9 && i != 19 && i != 29 && i != 39 && i != 49 && i != 59 && i != 69 && i != 79 && i != 89){
+  				bekles(i);
+					hamle+=1;
+  			}
+  			//S +11 +22
+  			if(document.getElementById(i+11) && document.getElementById(i+11).value == "O" && document.getElementById(i+22) && document.getElementById(i+22).value == "S" && i != 9 && i != 19 && i != 29 && i != 39 && i != 49 && i != 59 && i != 69 && i != 8 && i != 18 && i != 28 && i != 38 && i != 48 && i != 58 && i != 68){
+  				bekles(i);
+					hamle+=1;
+  			}
+  			//S +10 +20
+  			if(document.getElementById(i+10) && document.getElementById(i+10).value == "O" && document.getElementById(i+20) && document.getElementById(i+20).value == "S"){
+  				bekles(i);
+					hamle+=1;
+  			}
+  			//S +9 +18
+  			if(document.getElementById(i+9) && document.getElementById(i+9).value == "O" && document.getElementById(i+18) && document.getElementById(i+18).value == "S" && i != 0 && i != 10 && i != 20 && i != 30 && i != 40 && i != 50 && i != 60 && i != 70 && i != 80 && i != 1 && i != 11 && i != 21 && i != 31 && i != 41 && i != 51 && i != 61 && i != 71 && i != 81){
+  				bekles(i);
+					hamle+=1;
+  			}
+  			//O -1 +1
+  			if(document.getElementById(i-1) && document.getElementById(i-1).value == "S" && document.getElementById(i+1) && document.getElementById(i+1).value == "S" && i != 90 && i != 80 && i != 70 && i != 60 && i != 50 && i != 40 && i != 30 && i != 20 && i != 10 && i != 9 && i != 19 && i != 29 && i != 39 && i != 49 && i != 59 && i != 69 && i != 79 && i != 89){
+  				bekleo(i);
+					hamle+=1;
+  			}
+  			//O -11 +11
+  			if(document.getElementById(i-11) && document.getElementById(i-11).value == "S" && document.getElementById(i+11) && document.getElementById(i+11).value == "S" && i != 19 && i != 29 && i != 39 && i != 49 && i != 59 && i != 69 && i != 79 && i != 20 && i != 30 && i != 40 && i != 50 && i != 60 && i != 70 && i != 80){
+  				bekleo(i);
+					hamle+=1;
+  			}
+  			//O -10 +10
+  			if(document.getElementById(i-10) && document.getElementById(i-10).value == "S" && document.getElementById(i+10) && document.getElementById(i+10).value == "S"){
+  				bekleo(i);
+					hamle+=1;
+  			}
+  			//O -9 +9
+  			if(document.getElementById(i-9) && document.getElementById(i-9).value == "S" && document.getElementById(i+9) && document.getElementById(i+9).value == "S" && i != 10 && i != 20 && i != 30 && i != 40 && i != 50 && i != 60 && i != 70 && i != 80 && i != 90 && i != 9 && i != 19 && i != 29 && i != 39 && i != 49 && i != 59 && i != 69 && i != 79 && i != 89){
+  				bekleo(i);
+					hamle+=1;
+  			}
+  		}
+  	}
+	}
+	function rastgele() {
+  	var smi = Math.floor(Math.random() * 2);
+  	var tik = Math.floor(Math.random() * 100);
+  	var kontrol = disab.indexOf(tik);
+  	while(kontrol >= 0) {
+  		tik = Math.floor(Math.random() * 100);
+  		kontrol = disab.indexOf(tik);
+  	}
+		if (smi == 0) {
+			setTimeout(function(){
+				if(harf == "S") {
+					s(tik);
+				}
+				else {
+					harf = "S";
+					s(tik);
+					harf = "O";
+					document.getElementById("so").style.border = "none";
+				}
+			},bothizi*hamle);
+  	}
+  	else {
+			setTimeout(function(){
+				o(tik);
+			},bothizi*hamle);
+  	}
+		hamle = 1;
+	}
+
+	function s(elem) {
+		cik = "devam";
+		for(var i = 0; i < disab.length; i++) {
+			if (elem == disab[i]) { // daha önce tıklanmış bir yere tıklanırsa
+				cik = "cik";
+			}
+		}
+		if(cik != "cik") { // daha önce tıklanmamış bir yere tıklanırsa
+		var oyuncu = document.getElementById("oyuncu");
+		var rakip = document.getElementById("rakip");
+		var but = document.getElementById(elem);
+		but.disabled = true;
+		var bod = document.getElementById("bod");
+    	if (bod.style.backgroundColor == 'white') { //AÇIK TENADA
+				yap("a");
+    		but.style.border = '2px solid red';
+    		but.style.backgroundColor = 'red';
+				but.style.color = 'white';
+    	}
+    	else { //KOYU TENADA
+				yap("k");
+    		but.style.border = '2px solid red';
+    		but.style.backgroundColor = 'red';
+				but.style.color = 'white';
+    	}
+		but.style.borderRadius = '0%';
+		but.style.cursor = "default";
+		but.value = harf;
+		liste.push(elem);
+		disab.push(elem);
+		if (harf == "S") { // S kısmı
+			zaman = asil;
+			za.style.backgroundColor = "black";
+  		za.innerHTML = zaman;
+			cal("bip");
+			var index;
+			//S -11 -22
+			if (document.getElementById(elem-11) && document.getElementById(elem-11).value == "O" && document.getElementById(elem-22) && document.getElementById(elem-22).value == "S" && elem != 91 && elem != 81 && elem != 71 && elem != 61 && elem != 51 && elem != 41 && elem != 31 && elem != 90 && elem != 80 && elem != 70 && elem != 60 && elem != 50 && elem != 40 && elem != 30) {
+				document.getElementById(elem).style.color = "white";
+				document.getElementById(elem-11).style.color = "white";
+				document.getElementById(elem-22).style.color = "white";
+				document.getElementById(elem).style.backgroundColor = "green";
+				document.getElementById(elem-11).style.backgroundColor = "green";
+				document.getElementById(elem-22).style.backgroundColor = "green";
+    		document.getElementById(elem).style.border = '2px solid red';
+    		document.getElementById(elem-11).style.border = '2px solid white';
+    		document.getElementById(elem-22).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem-11) < 0) {
+    			soss.push(elem-11);
+    		}
+    		if (soss.indexOf(elem-22) < 0) {
+    			soss.push(elem-22);
+    		}
+
+				for (let i = 0; i < liste.length; i++) {
+					if (elem == liste[i]) {
+						index = liste.indexOf(elem);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem-11 == liste[i]) {
+						index = liste.indexOf(elem-11);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem-22 == liste[i]) {
+						index = liste.indexOf(elem-22);
+						liste.splice(index, 1);
+					}
+				}
+				if (sira == 0) {
+					opuan += 1;
+					oyuncu.innerHTML = "OYUNCU: " + opuan;
+				}
+				else {
+					rpuan += 1;
+					if (bot == "yok") {
+						rakip.innerHTML = "RAKİP: " + rpuan;
+					}
+					else {
+						rakip.innerHTML = "BOT: " + rpuan;
+					}
+				}
+				gold.play();
+			}
+			//S -10 -20
+			if (document.getElementById(elem-10) && document.getElementById(elem-10).value == "O" && document.getElementById(elem-20) && document.getElementById(elem-20).value == "S") {
+				document.getElementById(elem).style.color = "white";
+				document.getElementById(elem-10).style.color = "white";
+				document.getElementById(elem-20).style.color = "white";
+				document.getElementById(elem).style.backgroundColor = "green";
+				document.getElementById(elem-10).style.backgroundColor = "green";
+				document.getElementById(elem-20).style.backgroundColor = "green";
+    			document.getElementById(elem).style.border = '2px solid red';
+    			document.getElementById(elem-10).style.border = '2px solid white';
+    			document.getElementById(elem-20).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem-10) < 0) {
+    			soss.push(elem-10);
+    		}
+    		if (soss.indexOf(elem-20) < 0) {
+    			soss.push(elem-20);
+    		}
+
+				for (let i = 0; i < liste.length; i++) {
+					if (elem == liste[i]) {
+						index = liste.indexOf(elem);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem-10 == liste[i]) {
+						index = liste.indexOf(elem-10);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem-20 == liste[i]) {
+						index = liste.indexOf(elem-20);
+						liste.splice(index, 1);
+					}
+				}
+				if (sira == 0) {
+					opuan += 1;
+					oyuncu.innerHTML = "OYUNCU: " + opuan;
+				}
+				else {
+					rpuan += 1;
+					if (bot == "yok") {
+						rakip.innerHTML = "RAKİP: " + rpuan;
+					}
+					else {
+						rakip.innerHTML = "BOT: " + rpuan;
+					}
+				}
+				gold.play();
+			}
+			//S -9 -18
+			if (document.getElementById(elem-9) && document.getElementById(elem-9).value == "O" && document.getElementById(elem-18) && document.getElementById(elem-18).value == "S" && elem != 19 && elem != 29 && elem != 39 && elem != 49 && elem != 59 && elem != 69 && elem != 79 && elem != 89 && elem != 99 && elem != 18 && elem != 28 && elem != 38 && elem != 48 && elem != 58 && elem != 68 && elem != 78 && elem != 88 && elem != 98) {
+				document.getElementById(elem).style.color = "white";
+				document.getElementById(elem-9).style.color = "white";
+				document.getElementById(elem-18).style.color = "white";
+				document.getElementById(elem).style.backgroundColor = "green";
+				document.getElementById(elem-9).style.backgroundColor = "green";
+				document.getElementById(elem-18).style.backgroundColor = "green";
+    			document.getElementById(elem).style.border = '2px solid red';
+    			document.getElementById(elem-9).style.border = '2px solid white';
+    			document.getElementById(elem-18).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem-9) < 0) {
+    			soss.push(elem-9);
+    		}
+    		if (soss.indexOf(elem-18) < 0) {
+    			soss.push(elem-18);
+    		}
+
+				for (let i = 0; i < liste.length; i++) {
+					if (elem == liste[i]) {
+						index = liste.indexOf(elem);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem-9 == liste[i]) {
+						index = liste.indexOf(elem-9);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem-18 == liste[i]) {
+						index = liste.indexOf(elem-18);
+						liste.splice(index, 1);
+					}
+				}
+				if (sira == 0) {
+					opuan += 1;
+					oyuncu.innerHTML = "OYUNCU: " + opuan;
+				}
+				else {
+					rpuan += 1;
+					if (bot == "yok") {
+						rakip.innerHTML = "RAKİP: " + rpuan;
+					}
+					else {
+						rakip.innerHTML = "BOT: " + rpuan;
+					}
+				}
+				gold.play();
+			}
+			//S -1 -2
+			if (document.getElementById(elem-1) && document.getElementById(elem-1).value == "O" && document.getElementById(elem-2) && document.getElementById(elem-2).value == "S" && elem != 10 && elem != 20 && elem != 30 && elem != 40 && elem != 50 && elem != 60 && elem != 70 && elem != 80 && elem != 90 && elem != 11 && elem != 21 && elem != 31 && elem != 41 && elem != 51 && elem != 61 && elem != 71 && elem != 81 && elem != 91) {
+				document.getElementById(elem).style.color = "white";
+				document.getElementById(elem-1).style.color = "white";
+				document.getElementById(elem-2).style.color = "white";
+				document.getElementById(elem).style.backgroundColor = "green";
+				document.getElementById(elem-1).style.backgroundColor = "green";
+				document.getElementById(elem-2).style.backgroundColor = "green";
+    			document.getElementById(elem).style.border = '2px solid red';
+    			document.getElementById(elem-1).style.border = '2px solid white';
+    			document.getElementById(elem-2).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem-1) < 0) {
+    			soss.push(elem-1);
+    		}
+    		if (soss.indexOf(elem-2) < 0) {
+    			soss.push(elem-2);
+    		}
+
+				for (let i = 0; i < liste.length; i++) {
+					if (elem == liste[i]) {
+						index = liste.indexOf(elem);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem-1 == liste[i]) {
+						index = liste.indexOf(elem-1);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem-2 == liste[i]) {
+						index = liste.indexOf(elem-2);
+						liste.splice(index, 1);
+					}
+				}
+				if (sira == 0) {
+					opuan += 1;
+					oyuncu.innerHTML = "OYUNCU: " + opuan;
+				}
+				else {
+					rpuan += 1;
+					if (bot == "yok") {
+						rakip.innerHTML = "RAKİP: " + rpuan;
+					}
+					else {
+						rakip.innerHTML = "BOT: " + rpuan;
+					}
+				}
+				gold.play();
+			}
+			//S +1 +2
+			if (document.getElementById(elem+1) && document.getElementById(elem+1).value == "O" && document.getElementById(elem+2) && document.getElementById(elem+2).value == "S" && elem != 8 && elem != 18 && elem != 28 && elem != 38 && elem != 48 && elem != 58 && elem != 68 && elem != 78 && elem != 88 && elem != 9 && elem != 19 && elem != 29 && elem != 39 && elem != 49 && elem != 59 && elem != 69 && elem != 79 && elem != 89) {
+				document.getElementById(elem).style.color = "white";
+				document.getElementById(elem+1).style.color = "white";
+				document.getElementById(elem+2).style.color = "white";
+				document.getElementById(elem).style.backgroundColor = "green";
+				document.getElementById(elem+1).style.backgroundColor = "green";
+				document.getElementById(elem+2).style.backgroundColor = "green";
+    			document.getElementById(elem).style.border = '2px solid red';
+    			document.getElementById(elem+1).style.border = '2px solid white';
+    			document.getElementById(elem+2).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem+1) < 0) {
+    			soss.push(elem+1);
+    		}
+    		if (soss.indexOf(elem+2) < 0) {
+    			soss.push(elem+2);
+    		}
+
+				for (let i = 0; i < liste.length; i++) {
+					if (elem == liste[i]) {
+						index = liste.indexOf(elem);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem+1 == liste[i]) {
+						index = liste.indexOf(elem+1);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem+2 == liste[i]) {
+						index = liste.indexOf(elem+2);
+						liste.splice(index, 1);
+					}
+				}
+				if (sira == 0) {
+					opuan += 1;
+					oyuncu.innerHTML = "OYUNCU: " + opuan;
+				}
+				else {
+					rpuan += 1;
+					if (bot == "yok") {
+						rakip.innerHTML = "RAKİP: " + rpuan;
+					}
+					else {
+						rakip.innerHTML = "BOT: " + rpuan;
+					}
+				}
+				gold.play();
+			}
+			//S +9 +18
+			if (document.getElementById(elem+9) && document.getElementById(elem+9).value == "O" && document.getElementById(elem+18) && document.getElementById(elem+18).value == "S" && elem != 0 && elem != 10 && elem != 20 && elem != 30 && elem != 40 && elem != 50 && elem != 60 && elem != 70 && elem != 80 && elem != 1 && elem != 11 && elem != 21 && elem != 31 && elem != 41 && elem != 51 && elem != 61 && elem != 71 && elem != 81) {
+				document.getElementById(elem).style.color = "white";
+				document.getElementById(elem+9).style.color = "white";
+				document.getElementById(elem+18).style.color = "white";
+				document.getElementById(elem).style.backgroundColor = "green";
+				document.getElementById(elem+9).style.backgroundColor = "green";
+				document.getElementById(elem+18).style.backgroundColor = "green";
+    			document.getElementById(elem).style.border = '2px solid red';
+    			document.getElementById(elem+9).style.border = '2px solid white';
+    			document.getElementById(elem+18).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem+9) < 0) {
+    			soss.push(elem+9);
+    		}
+    		if (soss.indexOf(elem+18) < 0) {
+    			soss.push(elem+18);
+    		}
+
+				for (let i = 0; i < liste.length; i++) {
+					if (elem == liste[i]) {
+						index = liste.indexOf(elem);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem+9 == liste[i]) {
+						index = liste.indexOf(elem+9);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem+18 == liste[i]) {
+						index = liste.indexOf(elem+18);
+						liste.splice(index, 1);
+					}
+				}
+				if (sira == 0) {
+					opuan += 1;
+					oyuncu.innerHTML = "OYUNCU: " + opuan;
+				}
+				else {
+					rpuan += 1;
+					if (bot == "yok") {
+						rakip.innerHTML = "RAKİP: " + rpuan;
+					}
+					else {
+						rakip.innerHTML = "BOT: " + rpuan;
+					}
+				}
+				gold.play();
+			}
+			//S +10 +20
+			if (document.getElementById(elem+10) && document.getElementById(elem+10).value == "O" && document.getElementById(elem+20) && document.getElementById(elem+20).value == "S") {
+				document.getElementById(elem).style.color = "white";
+				document.getElementById(elem+10).style.color = "white";
+				document.getElementById(elem+20).style.color = "white";
+				document.getElementById(elem).style.backgroundColor = "green";
+				document.getElementById(elem+10).style.backgroundColor = "green";
+				document.getElementById(elem+20).style.backgroundColor = "green";
+    			document.getElementById(elem).style.border = '2px solid red';
+    			document.getElementById(elem+10).style.border = '2px solid white';
+    			document.getElementById(elem+20).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem+10) < 0) {
+    			soss.push(elem+10);
+    		}
+    		if (soss.indexOf(elem+20) < 0) {
+    			soss.push(elem+20);
+    		}
+
+				for (let i = 0; i < liste.length; i++) {
+					if (elem == liste[i]) {
+						index = liste.indexOf(elem);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem+10 == liste[i]) {
+						index = liste.indexOf(elem+10);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem+20 == liste[i]) {
+						index = liste.indexOf(elem+20);
+						liste.splice(index, 1);
+					}
+				}
+				if (sira == 0) {
+					opuan += 1;
+					oyuncu.innerHTML = "OYUNCU: " + opuan;
+				}
+				else {
+					rpuan += 1;
+					if (bot == "yok") {
+						rakip.innerHTML = "RAKİP: " + rpuan;
+					}
+					else {
+						rakip.innerHTML = "BOT: " + rpuan;
+					}
+				}
+				gold.play();
+			}
+			//S +11 +22
+			if (document.getElementById(elem+11) && document.getElementById(elem+11).value == "O" && document.getElementById(elem+22) && document.getElementById(elem+22).value == "S" && elem != 9 && elem != 19 && elem != 29 && elem != 39 && elem != 49 && elem != 59 && elem != 69 && elem != 8 && elem != 18 && elem != 28 && elem != 38 && elem != 48 && elem != 58 && elem != 68) {
+				document.getElementById(elem).style.color = "white";
+				document.getElementById(elem+11).style.color = "white";
+				document.getElementById(elem+22).style.color = "white";
+				document.getElementById(elem).style.backgroundColor = "green";
+				document.getElementById(elem+11).style.backgroundColor = "green";
+				document.getElementById(elem+22).style.backgroundColor = "green";
+    			document.getElementById(elem).style.border = '2px solid red';
+    			document.getElementById(elem+11).style.border = '2px solid white';
+    			document.getElementById(elem+22).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem+11) < 0) {
+    			soss.push(elem+11);
+    		}
+    		if (soss.indexOf(elem+22) < 0) {
+    			soss.push(elem+22);
+    		}
+
+				for (let i = 0; i < liste.length; i++) {
+					if (elem == liste[i]) {
+						index = liste.indexOf(elem);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem+11 == liste[i]) {
+						index = liste.indexOf(elem+11);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem+22 == liste[i]) {
+						index = liste.indexOf(elem+22);
+						liste.splice(index, 1);
+					}
+				}
+				if (sira == 0) {
+					opuan += 1;
+					oyuncu.innerHTML = "OYUNCU: " + opuan;
+				}
+				else {
+					rpuan += 1;
+					if (bot == "yok") {
+						rakip.innerHTML = "RAKİP: " + rpuan;
+					}
+					else {
+						rakip.innerHTML = "BOT: " + rpuan;
+					}
+				}
+				gold.play();
+			}
+			if (sira == 0) {
+				if (eski == opuan) {
+					if (bod.style.backgroundColor == 'white') {
+						oyuncu.style.color = "black";
+						rakip.style.color = "blue";
+					}
+					else {
+						oyuncu.style.color = "white";
+						rakip.style.color = "yellow";
+					}
+					sira = 1;
+					eski = rpuan;
+					//BOT HAMLESİ 1
+					if (bot != "yok" && disab.length < 100) { //bot oluşturulduysa ve boş kutu varsa
+						botla();
+					}
+					if (bot != "yok" && disab.length < 100) {
+						rastgele();
+					}
+				}
+				else {
+					eski = opuan;
+				}
+			}
+			else {
+				if (eski == rpuan) {
+					if (bod.style.backgroundColor == 'white') {
+						oyuncu.style.color = "blue";
+						rakip.style.color = "black";
+					}
+					else {
+						oyuncu.style.color = "yellow";
+						rakip.style.color = "white";
+					}
+					sira = 0;
+					eski = opuan;
+				}
+				else {
+					eski = rpuan;
+				}
+			}
+		}
+		else { // O kısmı
+			zaman = asil;
+			za.style.backgroundColor = "black";
+  		za.innerHTML = zaman;
+			cal("dit");
+			var index;
+			//O -1 +1
+			if (document.getElementById(elem-1) && document.getElementById(elem-1).value == "S" && document.getElementById(elem+1) && document.getElementById(elem+1).value == "S" && elem != 90 && elem != 80 && elem != 70 && elem != 60 && elem != 50 && elem != 40 && elem != 30 && elem != 20 && elem != 10 && elem != 9 && elem != 19 && elem != 29 && elem != 39 && elem != 49 && elem != 59 && elem != 69 && elem != 79 && elem != 89) {
+				document.getElementById(elem).style.color = "white";
+				document.getElementById(elem-1).style.color = "white";
+				document.getElementById(elem+1).style.color = "white";
+				document.getElementById(elem).style.backgroundColor = "green";
+				document.getElementById(elem-1).style.backgroundColor = "green";
+				document.getElementById(elem+1).style.backgroundColor = "green";
+    			document.getElementById(elem).style.border = '2px solid red';
+    			document.getElementById(elem-1).style.border = '2px solid white';
+    			document.getElementById(elem+1).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem-1) < 0) {
+    			soss.push(elem-1);
+    		}
+    		if (soss.indexOf(elem+1) < 0) {
+    			soss.push(elem+1);
+    		}
+
+				for (let i = 0; i < liste.length; i++) {
+					if (elem == liste[i]) {
+						index = liste.indexOf(elem);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem-1 == liste[i]) {
+						index = liste.indexOf(elem-1);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem+1 == liste[i]) {
+						index = liste.indexOf(elem+1);
+						liste.splice(index, 1);
+					}
+				}
+				if (sira == 0) {
+					opuan += 1;
+					oyuncu.innerHTML = "OYUNCU: " + opuan;
+				}
+				else {
+					rpuan += 1;
+					if (bot == "yok") {
+						rakip.innerHTML = "RAKİP: " + rpuan;
+					}
+					else {
+						rakip.innerHTML = "BOT: " + rpuan;
+					}
+				}
+				gold.play();
+			}
+			//O -11 +11
+			if (document.getElementById(elem-11) && document.getElementById(elem-11).value == "S" && document.getElementById(elem+11) && document.getElementById(elem+11).value == "S" && elem != 19 && elem != 29 && elem != 39 && elem != 49 && elem != 59 && elem != 69 && elem != 79 && elem != 20 && elem != 30 && elem != 40 && elem != 50 && elem != 60 && elem != 70 && elem != 80) {
+				document.getElementById(elem).style.color = "white";
+				document.getElementById(elem-11).style.color = "white";
+				document.getElementById(elem+11).style.color = "white";
+				document.getElementById(elem).style.backgroundColor = "green";
+				document.getElementById(elem-11).style.backgroundColor = "green";
+				document.getElementById(elem+11).style.backgroundColor = "green";
+    			document.getElementById(elem).style.border = '2px solid red';
+    			document.getElementById(elem-11).style.border = '2px solid white';
+    			document.getElementById(elem+11).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem-11) < 0) {
+    			soss.push(elem-11);
+    		}
+    		if (soss.indexOf(elem+11) < 0) {
+    			soss.push(elem+11);
+    		}
+
+				for (let i = 0; i < liste.length; i++) {
+					if (elem == liste[i]) {
+						index = liste.indexOf(elem);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem-11 == liste[i]) {
+						index = liste.indexOf(elem-11);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem+11 == liste[i]) {
+						index = liste.indexOf(elem+11);
+						liste.splice(index, 1);
+					}
+				}
+				if (sira == 0) {
+					opuan += 1;
+					oyuncu.innerHTML = "OYUNCU: " + opuan;
+				}
+				else {
+					rpuan += 1;
+					if (bot == "yok") {
+						rakip.innerHTML = "RAKİP: " + rpuan;
+					}
+					else {
+						rakip.innerHTML = "BOT: " + rpuan;
+					}
+				}
+				gold.play();
+			}
+			//O -10 +10
+			if (document.getElementById(elem-10) && document.getElementById(elem-10).value == "S" && document.getElementById(elem+10) && document.getElementById(elem+10).value == "S") {
+				document.getElementById(elem).style.color = "white";
+				document.getElementById(elem-10).style.color = "white";
+				document.getElementById(elem+10).style.color = "white";
+				document.getElementById(elem).style.backgroundColor = "green";
+				document.getElementById(elem-10).style.backgroundColor = "green";
+				document.getElementById(elem+10).style.backgroundColor = "green";
+    			document.getElementById(elem).style.border = '2px solid red';
+    			document.getElementById(elem-10).style.border = '2px solid white';
+    			document.getElementById(elem+10).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem-10) < 0) {
+    			soss.push(elem-10);
+    		}
+    		if (soss.indexOf(elem+10) < 0) {
+    			soss.push(elem+10);
+    		}
+
+				for (let i = 0; i < liste.length; i++) {
+					if (elem == liste[i]) {
+						index = liste.indexOf(elem);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem-10 == liste[i]) {
+						index = liste.indexOf(elem-10);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem+10 == liste[i]) {
+						index = liste.indexOf(elem+10);
+						liste.splice(index, 1);
+					}
+				}
+				if (sira == 0) {
+					opuan += 1;
+					oyuncu.innerHTML = "OYUNCU: " + opuan;
+				}
+				else {
+					rpuan += 1;
+					if (bot == "yok") {
+						rakip.innerHTML = "RAKİP: " + rpuan;
+					}
+					else {
+						rakip.innerHTML = "BOT: " + rpuan;
+					}
+				}
+				gold.play();
+			}
+			//O -9 +9
+			if (document.getElementById(elem-9) && document.getElementById(elem-9).value == "S" && document.getElementById(elem+9) && document.getElementById(elem+9).value == "S" && elem != 10 && elem != 20 && elem != 30 && elem != 40 && elem != 50 && elem != 60 && elem != 70 && elem != 80 && elem != 90 && elem != 9 && elem != 19 && elem != 29 && elem != 39 && elem != 49 && elem != 59 && elem != 69 && elem != 79 && elem != 89) {
+				document.getElementById(elem).style.color = "white";
+				document.getElementById(elem-9).style.color = "white";
+				document.getElementById(elem+9).style.color = "white";
+				document.getElementById(elem).style.backgroundColor = "green";
+				document.getElementById(elem-9).style.backgroundColor = "green";
+				document.getElementById(elem+9).style.backgroundColor = "green";
+    			document.getElementById(elem).style.border = '2px solid red';
+    			document.getElementById(elem-9).style.border = '2px solid white';
+    			document.getElementById(elem+9).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem-9) < 0) {
+    			soss.push(elem-9);
+    		}
+    		if (soss.indexOf(elem+9) < 0) {
+    			soss.push(elem+9);
+    		}
+
+				for (let i = 0; i < liste.length; i++) {
+					if (elem == liste[i]) {
+						index = liste.indexOf(elem);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem-9 == liste[i]) {
+						index = liste.indexOf(elem-9);
+						liste.splice(index, 1);
+					}
+				}
+				for (let i = 0; i < liste.length; i++) {
+					if (elem+9 == liste[i]) {
+						index = liste.indexOf(elem+9);
+						liste.splice(index, 1);
+					}
+				}
+				if (sira == 0) {
+					opuan += 1;
+					oyuncu.innerHTML = "OYUNCU: " + opuan;
+				}
+				else {
+					rpuan += 1;
+					if (bot == "yok") {
+						rakip.innerHTML = "RAKİP: " + rpuan;
+					}
+					else {
+						rakip.innerHTML = "BOT: " + rpuan;
+					}
+				}
+				gold.play();
+			}
+			if (sira == 0) {
+				if (eski == opuan) {
+					if (bod.style.backgroundColor == 'white') {
+						oyuncu.style.color = "black";
+						rakip.style.color = "blue";
+					}
+					else {
+						oyuncu.style.color = "white";
+						rakip.style.color = "yellow";
+					}
+					sira = 1;
+					eski = rpuan;
+					//BOT HAMLESİ 2
+					if (bot != "yok" && disab.length < 100) { //bot oluşturulduysa ve boş kutu varsa
+						botla();
+					}
+					if (bot != "yok" && disab.length < 100) {
+						rastgele();
+					}
+				}
+				else {
+					eski = opuan;
+				}
+			}
+			else {
+				if (eski == rpuan) {
+					if (bod.style.backgroundColor == 'white') {
+						oyuncu.style.color = "blue";
+						rakip.style.color = "black";
+					}
+					else {
+						oyuncu.style.color = "yellow";
+						rakip.style.color = "white";
+					}
+					sira = 0;
+					eski = opuan;
+				}
+				else {
+					eski = rpuan;
+				}
+			}
+		}
+		}
+		if (disab.length == 100) {
+			if (opuan > rpuan && bitti == "devamke") {
+				bitti = "bitti";
+				alert("OYUNCU KAZANDI");
+			}
+			else if (rpuan > opuan && bitti == "devamke") {
+				if (bot == "yok") {
+					bitti = "bitti";
+					alert("RAKİP KAZANDI");
+				}
+				else {
+					var sans = Math.floor(Math.random() * 2);
+					if (sans == 0 && bitti == "devamke") {
+						alert("AAA..! ÜZGÜNÜM KAYBETTİN 😏");
+						bitti = "bitti";
+					}
+					else if (sans == 1 && bitti == "devamke") {
+						alert("DAHA ÇOK ÇALIŞIP BENİ YENEBİLİRSİN 😉");
+						bitti = "bitti";
+					}
+				}
+			}
+			else {
+				if (bitti == "devamke") {
+					alert("BERABERE KALINDI");
+					bitti = "bitti";
+				}
+			}
+  	}
+	}
+	function o(elem) { // mouse O kısmı
+		cik = "devam";
+		for(var i = 0; i < disab.length; i++) {
+			if (elem == disab[i]) {
+				cik = "cik";
+			}
+		}
+		if(cik != "cik") {
+		zaman = asil;
+		za.style.backgroundColor = "black";
+  	za.innerHTML = zaman;
+		var but = document.getElementById(elem);
+		but.disabled = true;
+		var bod = document.getElementById("bod");
+    	if (bod.style.backgroundColor == 'white') {
+				yap("a");
+    		but.style.border = '2px solid red';
+    		but.style.backgroundColor = 'red';
+				but.style.color = 'white';
+    	}
+    	else {
+				yap("k");
+    		but.style.border = '2px solid red';
+    		but.style.backgroundColor = 'red';
+				but.style.color = 'white';
+    	}
+		but.style.borderRadius = '0%';
+		but.style.cursor = "default";
+		but.value = "O";
+		liste.push(elem);
+		disab.push(elem);
+		cal("dit");
+		var index;
+		//O -1 +1
+		if (document.getElementById(elem-1) && document.getElementById(elem-1).value == "S" && document.getElementById(elem+1) && document.getElementById(elem+1).value == "S" && elem != 90 && elem != 80 && elem != 70 && elem != 60 && elem != 50 && elem != 40 && elem != 30 && elem != 20 && elem != 10 && elem != 9 && elem != 19 && elem != 29 && elem != 39 && elem != 49 && elem != 59 && elem != 69 && elem != 79 && elem != 89) {
+			document.getElementById(elem).style.color = "white";
+			document.getElementById(elem-1).style.color = "white";
+			document.getElementById(elem+1).style.color = "white";
+			document.getElementById(elem).style.backgroundColor = "green";
+			document.getElementById(elem-1).style.backgroundColor = "green";
+			document.getElementById(elem+1).style.backgroundColor = "green";
+    		document.getElementById(elem).style.border = '2px solid red';
+    		document.getElementById(elem-1).style.border = '2px solid white';
+    		document.getElementById(elem+1).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem-1) < 0) {
+    			soss.push(elem-1);
+    		}
+    		if (soss.indexOf(elem+1) < 0) {
+    			soss.push(elem+1);
+    		}
+
+			for (let i = 0; i < liste.length; i++) {
+				if (elem == liste[i]) {
+					index = liste.indexOf(elem);
+					liste.splice(index, 1);
+				}
+			}
+			for (let i = 0; i < liste.length; i++) {
+				if (elem-1 == liste[i]) {
+					index = liste.indexOf(elem-1);
+					liste.splice(index, 1);
+				}
+			}
+			for (let i = 0; i < liste.length; i++) {
+				if (elem+1 == liste[i]) {
+					index = liste.indexOf(elem+1);
+					liste.splice(index, 1);
+				}
+			}
+			if (sira == 0) {
+				opuan += 1;
+				oyuncu.innerHTML = "OYUNCU: " + opuan;
+			}
+			else {
+				rpuan += 1;
+				if (bot == "yok") {
+					rakip.innerHTML = "RAKİP: " + rpuan;
+				}
+				else {
+					rakip.innerHTML = "BOT: " + rpuan;
+				}
+			}
+			gold.play();
+		}
+		//O -11 +11
+		if (document.getElementById(elem-11) && document.getElementById(elem-11).value == "S" && document.getElementById(elem+11) && document.getElementById(elem+11).value == "S" && elem != 19 && elem != 29 && elem != 39 && elem != 49 && elem != 59 && elem != 69 && elem != 79 && elem != 20 && elem != 30 && elem != 40 && elem != 50 && elem != 60 && elem != 70 && elem != 80) {
+			document.getElementById(elem).style.color = "white";
+			document.getElementById(elem-11).style.color = "white";
+			document.getElementById(elem+11).style.color = "white";
+			document.getElementById(elem).style.backgroundColor = "green";
+			document.getElementById(elem-11).style.backgroundColor = "green";
+			document.getElementById(elem+11).style.backgroundColor = "green";
+    		document.getElementById(elem).style.border = '2px solid red';
+    		document.getElementById(elem-11).style.border = '2px solid white';
+    		document.getElementById(elem+11).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem-11) < 0) {
+    			soss.push(elem-11);
+    		}
+    		if (soss.indexOf(elem+11) < 0) {
+    			soss.push(elem+11);
+    		}
+
+			for (let i = 0; i < liste.length; i++) {
+				if (elem == liste[i]) {
+					index = liste.indexOf(elem);
+					liste.splice(index, 1);
+				}
+			}
+			for (let i = 0; i < liste.length; i++) {
+				if (elem-11 == liste[i]) {
+					index = liste.indexOf(elem-11);
+					liste.splice(index, 1);
+				}
+			}
+			for (let i = 0; i < liste.length; i++) {
+				if (elem+11 == liste[i]) {
+					index = liste.indexOf(elem+11);
+					liste.splice(index, 1);
+				}
+			}
+			if (sira == 0) {
+				opuan += 1;
+				oyuncu.innerHTML = "OYUNCU: " + opuan;
+			}
+			else {
+				rpuan += 1;
+				if (bot == "yok") {
+					rakip.innerHTML = "RAKİP: " + rpuan;
+				}
+				else {
+					rakip.innerHTML = "BOT: " + rpuan;
+				}
+			}
+			gold.play();
+		}
+		//O -10 +10
+		if (document.getElementById(elem-10) && document.getElementById(elem-10).value == "S" && document.getElementById(elem+10) && document.getElementById(elem+10).value == "S") {
+			document.getElementById(elem).style.color = "white";
+			document.getElementById(elem-10).style.color = "white";
+			document.getElementById(elem+10).style.color = "white";
+			document.getElementById(elem).style.backgroundColor = "green";
+			document.getElementById(elem-10).style.backgroundColor = "green";
+			document.getElementById(elem+10).style.backgroundColor = "green";
+    		document.getElementById(elem).style.border = '2px solid red';
+    		document.getElementById(elem-10).style.border = '2px solid white';
+    		document.getElementById(elem+10).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem-10) < 0) {
+    			soss.push(elem-10);
+    		}
+    		if (soss.indexOf(elem+10) < 0) {
+    			soss.push(elem+10);
+    		}
+
+			for (let i = 0; i < liste.length; i++) {
+				if (elem == liste[i]) {
+					index = liste.indexOf(elem);
+					liste.splice(index, 1);
+				}
+			}
+			for (let i = 0; i < liste.length; i++) {
+				if (elem-10 == liste[i]) {
+					index = liste.indexOf(elem-10);
+					liste.splice(index, 1);
+				}
+			}
+			for (let i = 0; i < liste.length; i++) {
+				if (elem+10 == liste[i]) {
+					index = liste.indexOf(elem+10);
+					liste.splice(index, 1);
+				}
+			}
+			if (sira == 0) {
+				opuan += 1;
+				oyuncu.innerHTML = "OYUNCU: " + opuan;
+			}
+			else {
+				rpuan += 1;
+				if (bot == "yok") {
+					rakip.innerHTML = "RAKİP: " + rpuan;
+				}
+				else {
+					rakip.innerHTML = "BOT: " + rpuan;
+				}
+			}
+			gold.play();
+		}
+		//O -9 +9
+		if (document.getElementById(elem-9) && document.getElementById(elem-9).value == "S" && document.getElementById(elem+9) && document.getElementById(elem+9).value == "S" && elem != 10 && elem != 20 && elem != 30 && elem != 40 && elem != 50 && elem != 60 && elem != 70 && elem != 80 && elem != 90 && elem != 9 && elem != 19 && elem != 29 && elem != 39 && elem != 49 && elem != 59 && elem != 69 && elem != 79 && elem != 89) {
+			document.getElementById(elem).style.color = "white";
+			document.getElementById(elem-9).style.color = "white";
+			document.getElementById(elem+9).style.color = "white";
+			document.getElementById(elem).style.backgroundColor = "green";
+			document.getElementById(elem-9).style.backgroundColor = "green";
+			document.getElementById(elem+9).style.backgroundColor = "green";
+    		document.getElementById(elem).style.border = '2px solid red';
+    		document.getElementById(elem-9).style.border = '2px solid white';
+    		document.getElementById(elem+9).style.border = '2px solid white';
+    		if (soss.indexOf(elem) < 0) {
+    			soss.push(elem);
+    		}
+    		if (soss.indexOf(elem-9) < 0) {
+    			soss.push(elem-9);
+    		}
+    		if (soss.indexOf(elem+9) < 0) {
+    			soss.push(elem+9);
+    		}
+
+			for (let i = 0; i < liste.length; i++) {
+				if (elem == liste[i]) {
+					index = liste.indexOf(elem);
+					liste.splice(index, 1);
+				}
+			}
+			for (let i = 0; i < liste.length; i++) {
+				if (elem-9 == liste[i]) {
+					index = liste.indexOf(elem-9);
+					liste.splice(index, 1);
+				}
+			}
+			for (let i = 0; i < liste.length; i++) {
+				if (elem+9 == liste[i]) {
+					index = liste.indexOf(elem+9);
+					liste.splice(index, 1);
+				}
+			}
+			if (sira == 0) {
+				opuan += 1;
+				oyuncu.innerHTML = "OYUNCU: " + opuan;
+			}
+			else {
+				rpuan += 1;
+				if (bot == "yok") {
+					rakip.innerHTML = "RAKİP: " + rpuan;
+				}
+				else {
+					rakip.innerHTML = "BOT: " + rpuan;
+				}
+			}
+			gold.play();
+		}
+		if (sira == 0) {
+			if (eski == opuan) {
+				if (bod.style.backgroundColor == 'white') {
+					oyuncu.style.color = "black";
+					rakip.style.color = "blue";
+				}
+				else {
+					oyuncu.style.color = "white";
+					rakip.style.color = "yellow";
+				}
+				sira = 1;
+				eski = rpuan;
+				//BOT HAMLESİ 3
+					if (bot != "yok" && disab.length < 100) { //bot oluşturulduysa ve boş kutu varsa
+						botla();
+					}
+					if (bot != "yok" && disab.length < 100) {
+						rastgele();
+					}
+			}
+			else {
+				eski = opuan;
+			}
+		}
+		else {
+			if (eski == rpuan) {
+				if (bod.style.backgroundColor == 'white') {
+					oyuncu.style.color = "blue";
+					rakip.style.color = "black";
+				}
+				else {
+					oyuncu.style.color = "yellow";
+					rakip.style.color = "white";
+				}
+				sira = 0;
+				eski = opuan;
+			}
+			else {
+				eski = rpuan;
+			}
+		}
+		}
+		if (disab.length == 100) {
+			if (opuan > rpuan && bitti == "devamke") {
+				alert("OYUNCU KAZANDI");
+				bitti = "bitti";
+			}
+			else if (rpuan > opuan && bitti == "devamke") {
+				if (bot == "yok") {
+					alert("RAKİP KAZANDI");
+					bitti = "bitti";
+				}
+				else {
+					var sans = Math.floor(Math.random() * 2);
+					if (sans == 0 && bitti == "devamke") {
+						alert("AAA..! ÜZGÜNÜM KAYBETTİN 😏");
+						bitti = "bitti";
+					}
+					else if (sans == 1 && bitti == "devamke") {
+						alert("DAHA ÇOK ÇALIŞIP BENİ YENEBİLİRSİN 😉");
+						bitti = "bitti";
+					}
+				}
+			}
+			else {
+				if (bitti == "devamke") {
+					alert("BERABERE KALINDI");
+					bitti = "bitti";
+				}
+			}
+  	}
+	}
+	var bip = document.querySelector("#bip");
+	var dit = document.querySelector("#dit");
+	function cal(e) {
+		if(e == "bip") {
+    		bip.play();
+    	}
+    	else {
+    		dit.play();
+    	}
+    }
+    function on() {
+    	var but = document.getElementById(this.id);
+			var bod = document.getElementById("bod");
+    	if (bod.style.backgroundColor == 'white') {
+				but.style.backgroundColor = 'darkgrey';
+				but.style.color = 'darkgrey';
+    		but.style.border = '2px solid black';
+    	}
+    	else {
+				but.style.backgroundColor = 'darkgrey';
+				but.style.color = 'darkgrey';
+    		but.style.border = '2px solid white';
+    	}
+			but.style.borderRadius = '100%';
+    }
+    function off() {
+    	var but = document.getElementById(this.id);
+			but.style.backgroundColor = 'grey';
+			but.style.color = 'grey';
+    	but.style.border = 'none';
+			but.style.borderRadius = '0%';
+    }
+
+	var music = document.querySelector("#music");
+    var birki = "1";
+    function yap(v) {
+    	var bod = document.getElementById("bod");
+    	var so = document.getElementById("so");
+    	var os = document.getElementById("os");
+    	if(v == "s") {
+    		harf = "S";
+    		if (bod.style.backgroundColor == 'white') {
+    			so.style.border = "3px solid black";
+    		}
+    		else {
+    			so.style.border = "3px solid white";
+    		}
+    		so.style.cursor = "default";
+    		os.style.border = "none";
+    		os.style.cursor = "pointer";
+    		cal("bip");
+    	}
+    	if(v == "o") {
+    		harf = "O";
+    		so.style.border = "none";
+    		so.style.cursor = "pointer";
+    		if (bod.style.backgroundColor == 'white') {
+    			os.style.border = "3px solid black";
+    		}
+    		else {
+    			os.style.border = "3px solid white";
+    		}
+    		os.style.cursor = "default";
+    		cal("dit");
+    	}
+    	var ac = document.getElementById("ac");
+    	var ka = document.getElementById("ka");
+    	var bas = document.getElementById("bas");
+    	var bir = document.getElementById("bir");
+    	var iki = document.getElementById("iki");
+		var oyuncu = document.getElementById("oyuncu");
+		var rakip = document.getElementById("rakip");
+		var site = document.getElementById("site");
+		var cizgi = document.getElementById("cizgi");
+    	if(v == "a") {
+    		site.style.color = 'black';
+    		cizgi.style.borderTop = '1px solid black';
+    		bod.style.backgroundColor = 'white';
+    		bas.style.color = 'black';
+    		ac.style.border = "3px solid black";
+    		ac.style.cursor = "default";
+    		ka.style.border = "none";
+    		ka.style.cursor = "pointer";
+    		if (harf == "S") {
+    			so.style.border = "3px solid black";
+    		}
+    		else if (harf == "O") {
+    			os.style.border = "3px solid black";
+    		}
+    		if (birki == "1") {
+    			bir.style.border = "3px solid black";
+    		}
+    		else {
+    			iki.style.border = "3px solid black";
+    		}
+    		if (sira == 0) {
+				oyuncu.style.color = "blue";
+				rakip.style.color = "black";
+    		}
+    		else {
+				oyuncu.style.color = "black";
+				rakip.style.color = "blue";
+    		}
+    		for (let i = 0; i < liste.length; i++) {
+    			var deg = document.getElementById(liste[i]);
+    			deg.style.backgroundColor = "white";
+    			deg.style.color = "black";
+    			deg.style.border = "2px solid black";
+    		}
+    		for (let i = 0; i < soss.length; i++) {
+    			var deg = document.getElementById(soss[i]);
+    			deg.style.border = '2px solid white';
+    		}
+    		cal("bip");
+    	}
+    	if(v == "k") {
+    		site.style.color = 'white';
+    		cizgi.style.borderTop = '1px solid white';
+    		bod.style.backgroundColor = 'black';
+    		bas.style.color = 'white';
+    		ac.style.border = "none";
+    		ac.style.cursor = "pointer";
+    		ka.style.border = "3px solid white";
+    		ka.style.cursor = "default";
+    		if (harf == "S") {
+    			so.style.border = "3px solid white";
+    		}
+    		else if (harf == "O") {
+    			os.style.border = "3px solid white";
+    		}
+    		if (birki == "1") {
+    			bir.style.border = "3px solid white";
+    		}
+    		else {
+    			iki.style.border = "3px solid white";
+    		}
+    		if (sira == 0) {
+				oyuncu.style.color = "yellow";
+				rakip.style.color = "white";
+    		}
+    		else {
+				oyuncu.style.color = "white";
+				rakip.style.color = "yellow";
+    		}
+    		for (let i = 0; i < liste.length; i++) {
+    			var deg = document.getElementById(liste[i]);
+    			deg.style.backgroundColor = "black";
+    			deg.style.color = "white";
+    			deg.style.border = "2px solid white";
+    		}
+    		for (let i = 0; i < soss.length; i++) {
+    			var deg = document.getElementById(soss[i]);
+    			deg.style.border = '2px solid white';
+    		}
+    		cal("dit");
+    	}
+
+    	if(v == "1") {
+    		if (bod.style.backgroundColor == 'white') {
+    			bir.style.border = "3px solid black";
+    		}
+    		else {
+    			bir.style.border = "3px solid white";
+    		}
+    		bir.style.cursor = "default";
+    		iki.style.border = "none";
+    		iki.style.cursor = "pointer";
+    		birki = "1";
+    		music.pause();
+    		cal("bip");
+    	}
+    	if(v == "2") {
+    		bir.style.border = "none";
+    		bir.style.cursor = "pointer";
+    		if (bod.style.backgroundColor == 'white') {
+    			iki.style.border = "3px solid black";
+    		}
+    		else {
+    			iki.style.border = "3px solid white";
+    		}
+    		iki.style.cursor = "default";
+    		birki = "2";
+    		cal("dit");
+    		music.play();
+    	}
+    }
+    yap("k");
+</script>
+</body>
+</html>

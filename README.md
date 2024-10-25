@@ -3,5 +3,5 @@ sos oyunu -  xox game
 
 
 
-https://github.com/user-attachments/assets/f583d294-1317-4c7a-aaa5-e6d3e8a98297
+https://github.com/user-attachments/assets/e590f81e-9a24-492d-af1e-e8b0226fc23c
 
